@@ -3,11 +3,11 @@ export const roadmaps = {
     "Programming Fundamentals",
     "Data Structures & Algorithms",
     "Object Oriented Programming",
-    "Web Development Basics",
+    "Web Development",
     "Git & Version Control"
   ],
   "Data Analyst": [
-    "Statistics Basics",
+    "Statistics",
     "Python for Data Analysis",
     "SQL",
     "Data Visualization",
@@ -16,9 +16,9 @@ export const roadmaps = {
   "IT Support / QA": [
     "Computer Networks",
     "Operating Systems",
-    "Manual Testing Basics",
-    "Automation Fundamentals",
-    "Linux Basics"
+    "Manual Testing",
+    "Automation Basics",
+    "Linux Fundamentals"
   ],
   "General Studies": [
     "Problem Solving",

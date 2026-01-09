@@ -1,8 +1,8 @@
 import { roadmaps } from "../data/roadmaps";
 
-export default function Results({ assessment, coding }) {
-  const logicScore = assessment.q1 === "yes" ? 1 : 0;
-  const learningScore = assessment.q2 === "yes" ? 1 : 0;
+export default function Results({ assessment, coding, onOpenNotebook }) {
+  const logicScore = assessment.q1 === "yes";
+  const learningScore = assessment.q2 === "yes";
 
   let career = "General Studies";
 
@@ -27,6 +27,8 @@ export default function Results({ assessment, coding }) {
       <p><strong>Learning Interest:</strong> {learningScore ? "High" : "Low"}</p>
       <p><strong>Coding Skill:</strong> {codingSkill}</p>
 
+      <hr />
+
       <h3>Recommended Career</h3>
       <p>{career}</p>
 
@@ -36,6 +38,21 @@ export default function Results({ assessment, coding }) {
           <li key={index}>{skill}</li>
         ))}
       </ul>
+
+      {/* NOTEBOOK BUTTON */}
+      <button
+        onClick={() => onOpenNotebook(career)}
+        style={{
+          marginTop: "20px",
+          padding: "10px 15px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          cursor: "pointer"
+        }}
+      >
+        Open Career Notebook
+      </button>
     </div>
   );
 }

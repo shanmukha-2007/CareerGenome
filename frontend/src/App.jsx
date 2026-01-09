@@ -1,13 +1,16 @@
 import { useState } from "react";
+
 import Landing from "./pages/Landing";
 import Assessment from "./pages/Assessment";
 import CodingTest from "./pages/CodingTest";
 import Results from "./pages/Results";
+import CareerNotebook from "./pages/CareerNotebook";
 
 function App() {
   const [page, setPage] = useState("landing");
-  const [assessmentAnswers, setAssessmentAnswers] = useState({});
-  const [codingAnswers, setCodingAnswers] = useState({});
+  const [assessment, setAssessment] = useState({});
+  const [coding, setCoding] = useState({});
+  const [career, setCareer] = useState("");
 
   return (
     <>
@@ -18,7 +21,7 @@ function App() {
       {page === "assessment" && (
         <Assessment
           onSubmit={(data) => {
-            setAssessmentAnswers(data);
+            setAssessment(data);
             setPage("coding");
           }}
         />
@@ -27,14 +30,25 @@ function App() {
       {page === "coding" && (
         <CodingTest
           onSubmit={(data) => {
-            setCodingAnswers(data);
+            setCoding(data);
             setPage("results");
           }}
         />
       )}
 
       {page === "results" && (
-        <Results assessment={assessmentAnswers} coding={codingAnswers} />
+        <Results
+          assessment={assessment}
+          coding={coding}
+          onOpenNotebook={(careerName) => {
+            setCareer(careerName);
+            setPage("notebook");
+          }}
+        />
+      )}
+
+      {page === "notebook" && (
+        <CareerNotebook career={career} />
       )}
     </>
   );
