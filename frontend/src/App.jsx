@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Landing from "./pages/Landing";
 import Assessment from "./pages/Assessment";
+import CodingTest from "./pages/CodingTest";
 import Results from "./pages/Results";
 
 function App() {
   const [page, setPage] = useState("landing");
-  const [answers, setAnswers] = useState({});
+  const [assessmentAnswers, setAssessmentAnswers] = useState({});
+  const [codingAnswers, setCodingAnswers] = useState({});
 
   return (
     <>
@@ -16,13 +18,24 @@ function App() {
       {page === "assessment" && (
         <Assessment
           onSubmit={(data) => {
-            setAnswers(data);
+            setAssessmentAnswers(data);
+            setPage("coding");
+          }}
+        />
+      )}
+
+      {page === "coding" && (
+        <CodingTest
+          onSubmit={(data) => {
+            setCodingAnswers(data);
             setPage("results");
           }}
         />
       )}
 
-      {page === "results" && <Results answers={answers} />}
+      {page === "results" && (
+        <Results assessment={assessmentAnswers} coding={codingAnswers} />
+      )}
     </>
   );
 }
