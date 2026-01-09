@@ -1,16 +1,20 @@
 import { useState } from "react";
 
-export default function Assessment() {
+export default function Assessment({ onSubmit }) {
   const [answers, setAnswers] = useState({});
 
-  const handleChange = (q, value) => {
-    setAnswers({ ...answers, [q]: value });
+  const handleChange = (question, value) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [question]: value,
+    }));
   };
 
   return (
     <div style={{ padding: "40px" }}>
       <h2>Career Assessment</h2>
 
+      {/* Question 1 */}
       <p>1. Do you enjoy solving logical problems?</p>
       <label>
         <input
@@ -30,6 +34,9 @@ export default function Assessment() {
         No
       </label>
 
+      <br /><br />
+
+      {/* Question 2 */}
       <p>2. Do you like learning new technologies?</p>
       <label>
         <input
@@ -49,6 +56,17 @@ export default function Assessment() {
         No
       </label>
 
+      <br /><br />
+
+      {/* Submit */}
+      <button
+        onClick={() => onSubmit(answers)}
+        style={{ marginTop: "20px" }}
+      >
+        Submit Assessment
+      </button>
+
+      {/* Debug output (optional, good for review demo) */}
       <pre>{JSON.stringify(answers, null, 2)}</pre>
     </div>
   );
